@@ -32,6 +32,47 @@ function writePassword() {
     useSpecial = window.confirm("Do you want to use Special Characters?");
   }
 
+  function generatePassword() {
+    // Generates the Password
+    if(useLowerCase === true) {
+      genPassword.push(lowerCaseChar);
+    }
+  
+    if(useUpperCase === true) {
+      genPassword.push(lowerCaseChar.toUpperCase);
+    }
+  
+    if(useNumbers === true) {
+      genPassword.push(numbers);
+    }
+  
+    if (useSpecial === true) {
+      genPassword.push(specialChar);
+    }
+  
+    for(var i = 0; i < passwordLength; i++) {
+      var randomCharArrayNum;
+      var selectedCharArray;
+      var randomCharNum;
+      var randomchar;
+  
+      //randomises the differnt choices
+      randomCharArrayNum = parseInt(Math.floor(Math.random()*genPassword.length));
+  
+      selectedCharArray = genPassword[randomCharArrayNum];
+  
+      randomCharNum = parseInt(Math.floor(Math.random()*genPassword.length));
+  
+      randomchar = genPassword[randomCharNum];
+  
+      //shows the string
+      passwordString += randomchar;
+    }
+
+  //renders the final password
+  passwordText.textContent(genPassword);
+  }
+
   // Asks client to use a character between 8 and 128
   let passwordLength = parseInt(window.prompt("Please use a character between 8 and 128"));
   //checks if the client is using illegitiate characters or something less than 8 characters or more than 128
@@ -39,44 +80,6 @@ function writePassword() {
     alert("Password can't be less that 8 characters and more than 128 characters");
   }
 
-  // Generates the Password
-  if(useLowerCase === true) {
-    genPassword.push(lowerCaseChar);
-  }
-
-  if(useUpperCase === true) {
-    genPassword.push(lowerCaseChar.toUpperCase);
-  }
-
-  if(useNumbers === true) {
-    genPassword.push(numbers);
-  }
-
-  if (useSpecial === true) {
-    genPassword.push(specialChar);
-  }
-
-  for(var i = 0; i < passwordLength; i++) {
-    var randomCharArrayNum;
-    var selectedCharArray;
-    var randomCharNum;
-    var randomchar;
-
-    //randomises the differnt choices
-    randomCharArrayNum = parseInt(Math.floor(Math.random()*genPassword.length));
-
-    selectedCharArray = genPassword[randomCharArrayNum];
-
-    randomCharNum = parseInt(Math.floor(Math.random()*genPassword.length));
-
-    randomchar = genPassword[randomCharNum];
-
-    //shows the string
-    passwordString += randomchar;
-  }
-
-  //redners the final password
-  passwordText.textContent = passwordString;
 }
 
 // Add event listener to generate button
